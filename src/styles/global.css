@@ -217,15 +217,21 @@ a.contacto:focus-visible { outline: 3px solid var(--noche); outline-offset: 3px;
 }
 .barra a:focus-visible, .carrusel:focus-visible { outline: 3px solid var(--lima); outline-offset: 3px; }
 
-/* ---------- Movimiento ---------- */
-@keyframes sube { from { transform: translateY(16px); opacity: .001; } to { transform: none; opacity: 1; } }
+/* ---------- Movimiento (las animaciones viven en src/scripts/animaciones.ts) ---------- */
+/* Lo que GSAP anima arranca oculto para que no "salte" antes de animarse. */
+.js-gsap :is([data-anim], [data-reveal]) { visibility: hidden; }
+.palabra { display: inline-block; }
+
+/* Microinteracciones: el botón "se hunde" sobre su sombra al tocarlo. */
 @media (prefers-reduced-motion: no-preference) {
-  .portada .interior > * { animation: sube .6s cubic-bezier(.2,.7,.2,1) both; }
-  .portada .interior > :nth-child(2) { animation-delay: .08s; }
-  .portada .interior > :nth-child(3) { animation-delay: .16s; }
-  .portada .interior > :nth-child(4) { animation-delay: .22s; }
-  .portada .interior > :nth-child(5) { animation-delay: .28s; }
-  .portada .interior > :nth-child(6) { animation-delay: .34s; }
+  a.contacto, .barra a { transition: transform .18s ease, box-shadow .18s ease; }
+  .contacto .flecha { transition: transform .25s cubic-bezier(.3,1.6,.5,1); }
+  a.contacto:hover .flecha, a.contacto:focus-visible .flecha { transform: translateX(4px) rotate(-8deg); }
+  a.contacto:active { transform: translate(4px, 4px); box-shadow: 2px 2px 0 var(--noche); }
+  .barra a:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(43,19,81,.32); }
+  .barra a:active { transform: scale(.97); }
+  .obra img { transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+  .obra:hover img { transform: translateY(-4px) rotate(-1deg); }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .barra { transition: none; } }
 

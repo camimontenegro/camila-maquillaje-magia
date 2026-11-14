@@ -31,13 +31,17 @@ const obras = [
 >
 	<header class="banda portada">
 		<div class="interior">
-			<Image class="logo" src={logo} alt="Magia Espacio Creativo" width={400} loading="eager" />
-			<p class="etiqueta">Cierre de año 2026</p>
-			<h1>Maquillaje para <span class="resalte">bailarinas</span></h1>
+			<Image class="logo" src={logo} alt="Magia Espacio Creativo" width={400} loading="eager" data-anim />
+			<p class="etiqueta" data-anim>Cierre de año 2026</p>
+			<h1>
+				<span class="palabra" data-anim>Maquillaje</span>{' '}
+				<span class="palabra" data-anim>para</span>{' '}
+				<span class="palabra resalte" data-anim>bailarinas</span>
+			</h1>
 			<div class="foto-marco">
-				<span class="punto lima" aria-hidden="true"></span>
-				<span class="punto violeta" aria-hidden="true"></span>
-				<span class="punto naranja" aria-hidden="true"></span>
+				<span class="punto lima" aria-hidden="true" data-anim></span>
+				<span class="punto violeta" aria-hidden="true" data-anim></span>
+				<span class="punto naranja" aria-hidden="true" data-anim></span>
 				<Image
 					src={retrato}
 					alt="Retrato de la maquilladora con maquillaje en tonos cálidos"
@@ -45,47 +49,48 @@ const obras = [
 					sizes="(max-width: 520px) 100vw, 480px"
 					loading="eager"
 					fetchpriority="high"
+					data-anim
 				/>
 			</div>
 			<div class="dias" aria-label="Fechas del evento">
 				{dias.map((d) => (
-					<div class="dia">
+					<div class="dia" data-anim>
 						<span class="nombre">{d.nombre}</span>
 						<span class="num">{d.num}</span>
 						<span class="mes">noviembre</span>
 					</div>
 				))}
 			</div>
-			<p class="aporte">Aporte a voluntad</p>
+			<p class="aporte" data-anim>Aporte a voluntad</p>
 		</div>
 	</header>
 
 	<main>
 		<section class="banda propuesta" aria-labelledby="t-propuesta">
 			<div class="interior">
-				<p class="etiqueta">La propuesta</p>
-				<h2 id="t-propuesta">Que cada bailarina brille en el escenario</h2>
-				<p class="lead">
+				<p class="etiqueta" data-reveal>La propuesta</p>
+				<h2 id="t-propuesta" data-anim>Que cada bailarina brille en el escenario</h2>
+				<p class="lead" data-reveal>
 					Soy Camila Montenegro, maquilladora. Durante el cierre de año de Magia preparo a cada bailarina
 					antes de salir a escena, con colores que acompañan el vestuario y la energía del show.
 				</p>
 				<ul class="datos">
-					<li class="dato"><span class="bolita" aria-hidden="true"></span><div><p class="tit">Cuándo</p><p class="val">27, 28 y 29 de noviembre</p></div></li>
-					<li class="dato lima"><span class="bolita" aria-hidden="true"></span><div><p class="tit">Para quién</p><p class="val">Para vos, si te presentás en el cierre</p></div></li>
-					<li class="dato naranja"><span class="bolita" aria-hidden="true"></span><div><p class="tit">Aporte</p><p class="val">A voluntad: aportás lo que quieras</p></div></li>
+					<li class="dato" data-reveal><span class="bolita" aria-hidden="true"></span><div><p class="tit">Cuándo</p><p class="val">27, 28 y 29 de noviembre</p></div></li>
+					<li class="dato lima" data-reveal><span class="bolita" aria-hidden="true"></span><div><p class="tit">Para quién</p><p class="val">Para vos, si te presentás en el cierre</p></div></li>
+					<li class="dato naranja" data-reveal><span class="bolita" aria-hidden="true"></span><div><p class="tit">Aporte</p><p class="val">A voluntad: aportás lo que quieras</p></div></li>
 				</ul>
 			</div>
 		</section>
 
 		<section class="banda trabajos" aria-labelledby="t-trabajos">
 			<div class="interior">
-				<p class="etiqueta">Mi estilo</p>
-				<h2 id="t-trabajos">Algunos de mis trabajos</h2>
-				<p class="ayuda">Deslizá para ver más →</p>
+				<p class="etiqueta" data-reveal>Mi estilo</p>
+				<h2 id="t-trabajos" data-anim>Algunos de mis trabajos</h2>
+				<p class="ayuda" data-reveal>Deslizá para ver más →</p>
 			</div>
 			<div class="carrusel" id="carrusel" tabindex="0" aria-label="Galería de trabajos">
 				{obras.map((o) => (
-					<figure class="obra">
+					<figure class="obra" data-reveal="derecha">
 						<Image src={o.src} alt={o.alt} widths={[400, 800]} sizes="(max-width: 520px) 78vw, 380px" />
 						<figcaption>{o.caption}</figcaption>
 					</figure>
@@ -98,10 +103,10 @@ const obras = [
 
 		<section class="banda reserva" id="reservar" aria-labelledby="t-reserva">
 			<div class="interior">
-				<p class="etiqueta">Cierre de año · Magia</p>
-				<h2 id="t-reserva">¡Reservá tu maquillaje!</h2>
-				<p class="lead">Escribime para coordinar el horario antes de tu presentación.</p>
-				<div class="contactos">
+				<p class="etiqueta" data-reveal>Cierre de año · Magia</p>
+				<h2 id="t-reserva" data-anim>¡Reservá tu maquillaje!</h2>
+				<p class="lead" data-reveal>Escribime para coordinar el horario antes de tu presentación.</p>
+				<div class="contactos" data-reveal>
 					<a class="contacto" href={whatsapp} target="_blank" rel="noopener">
 						<div><p class="tit">WhatsApp</p><p class="val">2281 40-7645</p></div>
 						<span class="flecha" aria-hidden="true">→</span>
@@ -111,24 +116,26 @@ const obras = [
 						<span class="flecha" aria-hidden="true">→</span>
 					</a>
 				</div>
-				<p class="resumen">27, 28 y 29 de noviembre · Aporte a voluntad</p>
+				<p class="resumen" data-reveal="pop">27, 28 y 29 de noviembre · Aporte a voluntad</p>
 			</div>
 		</section>
 	</main>
 
 	<footer class="banda pie">
 		<div class="interior">
-			<Image src={logo} alt="Magia Espacio Creativo" width={300} />
-			<p>Cierre de año 2026</p>
+			<Image src={logo} alt="Magia Espacio Creativo" width={300} data-reveal="pop" />
+			<p data-reveal>Cierre de año 2026</p>
 		</div>
 	</footer>
 
 	<nav class="barra" id="barra" aria-label="Reservar">
-		<a href={whatsapp} target="_blank" rel="noopener">Reservar por WhatsApp</a>
+		<a href={whatsapp} target="_blank" rel="noopener" data-anim>Reservar por WhatsApp</a>
 	</nav>
 </Layout>
 
 <script>
+	import '../scripts/animaciones';
+
 	const car = document.getElementById('carrusel');
 	const dots = document.querySelectorAll('.puntos span');
 	if (car && dots.length) {
