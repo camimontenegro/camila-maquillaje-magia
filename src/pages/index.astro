@@ -1,0 +1,162 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+
+import logo from '../assets/img/logo-magia.png';
+import retrato from '../assets/img/retrato.jpg';
+import perfil from '../assets/img/perfil.jpg';
+import color from '../assets/img/color.jpg';
+import ojos from '../assets/img/ojos.jpg';
+
+const whatsapp =
+	'https://wa.me/5492281407645?text=' +
+	encodeURIComponent('Hola! Quiero reservar maquillaje para el cierre de año de Magia');
+
+const dias = [
+	{ nombre: 'Viernes', num: 27 },
+	{ nombre: 'Sábado', num: 28 },
+	{ nombre: 'Domingo', num: 29 },
+];
+
+const obras = [
+	{ src: perfil, alt: 'Maquillaje de ojos en tonos borravino y labios con brillo, de perfil', caption: 'Glam luminoso' },
+	{ src: color, alt: 'Sombra cobriza con brillos, delineado y piedritas junto al lagrimal', caption: 'Color y brillos' },
+	{ src: ojos, alt: 'Detalle de párpados con sombra rosada ahumada y piedritas', caption: 'Ojos protagonistas' },
+];
+---
+
+<Layout
+	title="Maquillaje Cierre Magia"
+	description="Camila Montenegro maquilla a las bailarinas del cierre de año de Magia Espacio Creativo: 27, 28 y 29 de noviembre, con aporte a voluntad."
+>
+	<header class="banda portada">
+		<div class="interior">
+			<Image class="logo" src={logo} alt="Magia Espacio Creativo" width={400} loading="eager" />
+			<p class="etiqueta">Cierre de año 2026</p>
+			<h1>Maquillaje para <span class="resalte">bailarinas</span></h1>
+			<div class="foto-marco">
+				<span class="punto lima" aria-hidden="true"></span>
+				<span class="punto violeta" aria-hidden="true"></span>
+				<span class="punto naranja" aria-hidden="true"></span>
+				<Image
+					src={retrato}
+					alt="Retrato de la maquilladora con maquillaje en tonos cálidos"
+					widths={[480, 900]}
+					sizes="(max-width: 520px) 100vw, 480px"
+					loading="eager"
+					fetchpriority="high"
+				/>
+			</div>
+			<div class="dias" aria-label="Fechas del evento">
+				{dias.map((d) => (
+					<div class="dia">
+						<span class="nombre">{d.nombre}</span>
+						<span class="num">{d.num}</span>
+						<span class="mes">noviembre</span>
+					</div>
+				))}
+			</div>
+			<p class="aporte">Aporte a voluntad</p>
+		</div>
+	</header>
+
+	<main>
+		<section class="banda propuesta" aria-labelledby="t-propuesta">
+			<div class="interior">
+				<p class="etiqueta">La propuesta</p>
+				<h2 id="t-propuesta">Que cada bailarina brille en el escenario</h2>
+				<p class="lead">
+					Soy Camila Montenegro, maquilladora. Durante el cierre de año de Magia preparo a cada bailarina
+					antes de salir a escena, con colores que acompañan el vestuario y la energía del show.
+				</p>
+				<ul class="datos">
+					<li class="dato"><span class="bolita" aria-hidden="true"></span><div><p class="tit">Cuándo</p><p class="val">27, 28 y 29 de noviembre</p></div></li>
+					<li class="dato lima"><span class="bolita" aria-hidden="true"></span><div><p class="tit">Para quién</p><p class="val">Para vos, si te presentás en el cierre</p></div></li>
+					<li class="dato naranja"><span class="bolita" aria-hidden="true"></span><div><p class="tit">Aporte</p><p class="val">A voluntad: aportás lo que quieras</p></div></li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="banda trabajos" aria-labelledby="t-trabajos">
+			<div class="interior">
+				<p class="etiqueta">Mi estilo</p>
+				<h2 id="t-trabajos">Algunos de mis trabajos</h2>
+				<p class="ayuda">Deslizá para ver más →</p>
+			</div>
+			<div class="carrusel" id="carrusel" tabindex="0" aria-label="Galería de trabajos">
+				{obras.map((o) => (
+					<figure class="obra">
+						<Image src={o.src} alt={o.alt} widths={[400, 800]} sizes="(max-width: 520px) 78vw, 380px" />
+						<figcaption>{o.caption}</figcaption>
+					</figure>
+				))}
+			</div>
+			<div class="puntos" aria-hidden="true">
+				{obras.map((_, i) => <span class={i === 0 ? 'activo' : undefined}></span>)}
+			</div>
+		</section>
+
+		<section class="banda reserva" id="reservar" aria-labelledby="t-reserva">
+			<div class="interior">
+				<p class="etiqueta">Cierre de año · Magia</p>
+				<h2 id="t-reserva">¡Reservá tu maquillaje!</h2>
+				<p class="lead">Escribime para coordinar el horario antes de tu presentación.</p>
+				<div class="contactos">
+					<a class="contacto" href={whatsapp} target="_blank" rel="noopener">
+						<div><p class="tit">WhatsApp</p><p class="val">2281 40-7645</p></div>
+						<span class="flecha" aria-hidden="true">→</span>
+					</a>
+					<a class="contacto" href="https://www.instagram.com/camimonteneg_/" target="_blank" rel="noopener">
+						<div><p class="tit">Instagram</p><p class="val">@camimonteneg_</p></div>
+						<span class="flecha" aria-hidden="true">→</span>
+					</a>
+				</div>
+				<p class="resumen">27, 28 y 29 de noviembre · Aporte a voluntad</p>
+			</div>
+		</section>
+	</main>
+
+	<footer class="banda pie">
+		<div class="interior">
+			<Image src={logo} alt="Magia Espacio Creativo" width={300} />
+			<p>Cierre de año 2026</p>
+		</div>
+	</footer>
+
+	<nav class="barra" id="barra" aria-label="Reservar">
+		<a href={whatsapp} target="_blank" rel="noopener">Reservar por WhatsApp</a>
+	</nav>
+</Layout>
+
+<script>
+	const car = document.getElementById('carrusel');
+	const dots = document.querySelectorAll('.puntos span');
+	if (car && dots.length) {
+		car.addEventListener(
+			'scroll',
+			() => {
+				const items = car.querySelectorAll<HTMLElement>('.obra');
+				let best = 0;
+				let min = Infinity;
+				items.forEach((it, i) => {
+					const d = Math.abs(it.offsetLeft - car.scrollLeft - car.offsetLeft);
+					if (d < min) {
+						min = d;
+						best = i;
+					}
+				});
+				dots.forEach((d, i) => d.classList.toggle('activo', i === best));
+			},
+			{ passive: true },
+		);
+	}
+
+	const barra = document.getElementById('barra');
+	const reserva = document.getElementById('reservar');
+	if (barra && reserva && 'IntersectionObserver' in window) {
+		new IntersectionObserver(
+			(entries) => entries.forEach((e) => barra.classList.toggle('oculta', e.isIntersecting)),
+			{ threshold: 0.15 },
+		).observe(reserva);
+	}
+</script>
