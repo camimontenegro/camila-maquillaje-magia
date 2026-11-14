@@ -40,6 +40,17 @@ const canonical = new URL(Astro.url.pathname, base).href;
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImage} />
 
+		<script is:inline>
+			// Oculta antes del primer pintado lo que GSAP va a animar (solo si se permiten animaciones).
+			// Si GSAP no carga en 3 s, se muestra todo igual para no dejar la página vacía.
+			if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+				document.documentElement.classList.add('js-gsap');
+				setTimeout(function () {
+					if (!window.__gsapListo) document.documentElement.classList.remove('js-gsap');
+				}, 3000);
+			}
+		</script>
+
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
